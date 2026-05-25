@@ -11,61 +11,70 @@ package com.mycompany.mavenproject1;
 
 
 public class Main {
+
     public static void main(String[] args) {
-        // CALLING CLASS AND SCANNER TO MAIN METHOD //
+
+        // SCANNER AND OBJECT
         Scanner input = new Scanner(System.in);
         Login log = new Login();
 
-                         // Registration//
-        
+        // REGISTRATION
         System.out.println("=========REGISTRATION=========");
-        
-        
-                         // FIRST AND LAST NAME //
+
+        // FIRST NAME
         System.out.print("Enter first name: ");
         String firstName = input.nextLine();
 
+        // LAST NAME
         System.out.print("Enter last name: ");
         String lastName = input.nextLine();
 
         System.out.println(" ");
 
-                         // USERNAME //
+        // USERNAME
         System.out.print("Enter username: ");
         String username = input.nextLine();
 
         if (log.checkUserName(username)) {
+
             System.out.println("Username successfully captured.");
+
         } else {
-            System.out.print("Username is not correctly formatted;");
-            System.out.println("please ensure that your password contains a underscore and is no more that five characters in length.");
+
+            System.out.println("Username is not correctly formatted.");
         }
 
         System.out.println(" ");
 
-                        // PASSWORD //
+        // PASSWORD
         System.out.print("Enter password: ");
         String password = input.nextLine();
 
         if (log.checkPasswordComplexity(password)) {
+
             System.out.println("Password successfully captured.");
+
         } else {
-            System.out.print("Password is not correctly formatted; ");
-            System.out.println("please ensure password contains atleast eight characters, a capital letter, a number and a special character.");
+
+            System.out.println("Password is not correctly formatted.");
         }
 
-                       // SOUTH AFRICAN CELLPHONE NUMBER //
+        System.out.println(" ");
+
+        // CELLPHONE NUMBER
         System.out.print("Enter cellphone number (+27xxxxxxxxx): ");
         String cell = input.nextLine();
 
         if (log.checkCellPhoneNumber(cell)) {
+
             System.out.println("Cell phone number successfully added.");
+
         } else {
-            System.out.print("Cell phone number incorrectly formatted ");
-            System.out.println("or does not contain international code. ");
+
+            System.out.println("Cell phone number incorrectly formatted.");
         }
 
-                      // LOGIN DETAILS//
+        // LOGIN
         System.out.println("======LOGIN======");
 
         System.out.print("Enter username: ");
@@ -76,10 +85,69 @@ public class Main {
 
         System.out.println(" ");
 
-        if (userName.equals(username) && passWord.equals(password)) {
-            System.out.println("Welcome " + firstName + " " + lastName+".");
+        // LOGIN CHECK
+        if (userName.equals(username)
+                && passWord.equals(password)) {
+
+            System.out.println("Welcome "
+                    + firstName + " " + lastName + ".");
+
+            // MESSAGE SECTION
+            System.out.println("======MESSAGES======");
+
+            // DECLARATIONS
+            String recipient;
+            String text;
+            int choice;
+
+            // USER INPUT
+            System.out.print("Enter recipient number: ");
+            recipient = input.nextLine();
+
+            System.out.print("Enter your message: ");
+            text = input.nextLine();
+
+            // CHECK LENGTH
+            if (text.length() > 250) {
+
+                System.out.println("Message is too long.");
+                return;
+            }
+
+            // OBJECT
+            Message m = new Message(recipient, text);
+
+            // SHOW MESSAGE
+            m.showMessage();
+
+            // MENU
+            System.out.println("1. Send");
+            System.out.println("2. Discard");
+            System.out.println("3. Store");
+
+            System.out.print("Choose option: ");
+            choice = input.nextInt();
+
+            if (choice == 1) {
+
+                System.out.println("Message successfully sent.");
+
+            } else if (choice == 2) {
+
+                System.out.println("Message discarded.");
+
+            } else if (choice == 3) {
+
+                System.out.println("Message stored.");
+
+            } else {
+
+                System.out.println("Invalid option.");
+            }
+
         } else {
-            System.out.println("Username or password has been enterred incorrectly.");
+
+            System.out.println("Username or password has been entered incorrectly.");
         }
     }
 }
